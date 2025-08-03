@@ -34,7 +34,7 @@ function calculateLP() {
         resultDiv.innerHTML = `
             <h2>Life Path Number kamu: ${lp}</h2>
             <a href="${videos[lp]}" target="_blank">
-                <img src="img/lp${lp}.jpg" alt="Cover LP ${lp}" style="max-width:300px; border-radius:8px; margin-top:10px;">
+                <img src="lp${lp}.jpg" alt="Cover LP ${lp}" style="max-width:300px; border-radius:8px; margin-top:10px;">
             </a>
             <br><br>
             <a href="${videos[lp]}" target="_blank" class="tiktok-link">🎯 Lihat TikTok Kamu</a>
