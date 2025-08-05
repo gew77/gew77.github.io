@@ -14,19 +14,38 @@ body {
 
 h1 {
     color: #5b34a7;
+    font-size: 28px;
+    margin-bottom: 12px;
 }
 
-input, button {
-    padding: 10px;
-    margin: 10px;
-    font-size: 1rem;
+p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+input[type="date"] {
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 300px;
 }
 
 button {
+    padding: 12px 20px;
+    margin: 8px;
+    font-size: 16px;
     background-color: #5b34a7;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.3s;
+    width: calc(100% - 20px);
+    max-width: 300px;
 }
 
 button:hover {
@@ -34,7 +53,29 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+}
+
+#result h2 {
+    color: #5b34a7;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#result img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 15px 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tiktok-link {
@@ -45,8 +86,20 @@ button:hover {
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
+    margin: 5px 0;
 }
 
 .tiktok-link:hover {
     background-color: #e60046;
+}
+
+#result button {
+    background-color: #0088cc;
+    width: calc(100% - 20px);
+    max-width: 300px;
+    margin: 8px 10px;
+}
+
+#result button:last-child {
+    background-color: #25D366;
 }
