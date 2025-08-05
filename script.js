@@ -34,12 +34,42 @@ function calculateLP() {
         resultDiv.innerHTML = `
             <h2>Life Path Number kamu: ${lp}</h2>
             <a href="${videos[lp]}" target="_blank">
-                <img src="lp${lp}.jpg" alt="Cover LP ${lp}" style="max-width:300px; border-radius:8px; margin-top:10px;">
+                <img src="lp${lp}.jpg" alt="Cover LP ${lp}" style="max-width:300px; border-radius:8px; margin-top:10px;" id="lpImage">
             </a>
             <br><br>
             <a href="${videos[lp]}" target="_blank" class="tiktok-link">🎯 Lihat TikTok Kamu</a>
+            <br><br>
+            <button onclick="shareImage(${lp})">🔗 Share Gambar Ini</button>
         `;
     } else {
         resultDiv.innerHTML = `<p>Video untuk LP ${lp} belum tersedia.</p>`;
     }
+}
+
+function shareImage(lp) {
+    const imageUrl = `lp${lp}.jpg`;
+
+    fetch(imageUrl)
+        .then(res => res.blob())
+        .then(blob => {
+            const file = new File([blob], `lp${lp}.jpg`, { type: "image/jpeg" });
+            const shareData = {
+                files: [file],
+                title: `Life Path ${lp}`,
+                text: `Cek hasil Life Path Number-ku: ${lp}`,
+            };
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                navigator.share(shareData)
+                    .then(() => console.log("Berhasil dibagikan"))
+                    .catch(err => console.error("Gagal share:", err));
+            } else {
+                const fallbackURL = `https://api.whatsapp.com/send?text=Cek%20Life%20Path-ku:%20${lp}%20di%20https://gew77.github.io`;
+                window.open(fallbackURL, '_blank');
+            }
+        })
+        .catch(err => {
+            console.error("Gagal ambil gambar:", err);
+            alert("Gagal menyiapkan gambar untuk dibagikan.");
+        });
 }
