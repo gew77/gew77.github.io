@@ -130,6 +130,14 @@
             } else {
                 resultDiv.innerHTML = `<p>Video untuk LP ${lp} belum tersedia.</p>`;
             }
+            // Trigger iklan setelah hasil muncul
+            setTimeout(() => {
+                (function(d,z,s){
+                    s.src='https://'+d+'/401/'+z;
+                    try{ (document.body||document.documentElement).appendChild(s); }
+                    catch(e){}
+                })('groleegni.net', 9692918, document.createElement('script'));
+            }, 1500);
         }
 
         function shareImage(lp) {
