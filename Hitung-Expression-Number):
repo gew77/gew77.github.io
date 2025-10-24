@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Numerologi Nama</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+        
+        button {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .result-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .number-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            color: #4a00e0;
+            margin-bottom: 10px;
+        }
+        
+        .result-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .traits-list {
+            list-style-type: none;
+        }
+        
+        .traits-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .traits-list li:before {
+            content: "✓";
+            color: #4a00e0;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .explanation h3 {
+            margin-bottom: 15px;
+            color: #4a00e0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .number-circle {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kalkulator Numerologi Nama</h1>
+            <p class="subtitle">Temukan bakat dan karakteristik terpendam dalam nama lengkap Anda</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="fullname">Masukkan Nama Lengkap Anda:</label>
+                    <input type="text" id="fullname" placeholder="Contoh: Ahmad Rizki Pratama">
+                </div>
+                <button id="calculate-btn">Hitung Numerologi Nama</button>
+            </div>
+            
+            <div class="result-section" id="result-section">
+                <div class="result-header">
+                    <div class="number-circle" id="result-number">7</div>
+                    <div>
+                        <h2 id="result-name">Nama Anda</h2>
+                        <p>Angka Ekspresi: <span id="expression-number">7</span></p>
+                    </div>
+                </div>
+                
+                <h3 class="result-title">Karakteristik Utama Anda</h3>
+                <p class="result-description" id="result-description">
+                    Deskripsi karakteristik akan muncul di sini setelah perhitungan.
+                </p>
+                
+                <h3>Bakat dan Potensi Anda:</h3>
+                <ul class="traits-list" id="traits-list">
+                    <!-- Daftar bakat akan diisi oleh JavaScript -->
+                </ul>
+                
+                <div class="explanation">
+                    <h3>Bagaimana Cara Kerjanya?</h3>
+                    <p>Numerologi nama didasarkan pada penjumlahan nilai numerik dari setiap huruf dalam nama lengkap Anda. Setiap angka dari 1-9 memiliki makna dan karakteristik tertentu yang mencerminkan potensi, bakat, dan karakter Anda.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Kalkulator Numerologi Nama &copy; 2023 - Hasil ini bersifat hiburan dan tidak dimaksudkan sebagai nasihat profesional.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculate-btn');
+            const fullnameInput = document.getElementById('fullname');
+            const resultSection = document.getElementById('result-section');
+            const resultNumber = document.getElementById('result-number');
+            const resultName = document.getElementById('result-name');
+            const expressionNumber = document.getElementById('expression-number');
+            const resultDescription = document.getElementById('result-description');
+            const traitsList = document.getElementById('traits-list');
+            
+            // Mapping huruf ke angka (numerologi Pitagorean)
+            const letterValues = {
+                'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+                'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+                'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+            };
+            
+            // Deskripsi untuk setiap angka ekspresi
+            const numberDescriptions = {
+                1: {
+                    title: "Pemimpin Alami",
+                    description: "Anda adalah individu yang mandiri, penuh inisiatif, dan memiliki jiwa kepemimpinan yang kuat. Anda cenderung mengambil alih situasi dan memimpin orang lain menuju tujuan.",
+                    traits: [
+                        "Kemandirian dan kepercayaan diri yang tinggi",
+                        "Kemampuan memimpin dan mengambil inisiatif",
+                        "Kreativitas dan orisinalitas dalam berpikir",
+                        "Determinasi dan tekad yang kuat",
+                        "Kemampuan untuk memulai hal-hal baru"
+                    ]
+                },
+                2: {
+                    title: "Diplomat dan Mediator",
+                    description: "Anda adalah pribadi yang harmonis, kooperatif, dan sensitif terhadap kebutuhan orang lain. Anda unggul dalam membangun hubungan dan menciptakan kerjasama.",
+                    traits: [
+                        "Kemampuan diplomasi dan mediasi yang baik",
+                        "Sensitif terhadap perasaan orang lain",
+                        "Kerjasama tim dan kemampuan kolaborasi",
+                        "Kesabaran dan pengertian",
+                        "Intuisi yang kuat tentang dinamika hubungan"
+                    ]
+                },
+                3: {
+                    title: "Ekspresif dan Kreatif",
+                    description: "Anda adalah individu yang ekspresif, optimis, dan penuh dengan energi kreatif. Anda memiliki bakat dalam seni, komunikasi, dan menghibur orang lain.",
+                    traits: [
+                        "Kreativitas dan imajinasi yang kaya",
+                        "Kemampuan komunikasi yang sangat baik",
+                        "Optimisme dan semangat hidup yang tinggi",
+                        "Bakat dalam seni dan ekspresi diri",
+                        "Kemampuan menghibur dan memotivasi orang lain"
+                    ]
+                },
+                4: {
+                    title: "Pembangun yang Praktis",
+                    description: "Anda adalah pribadi yang praktis, terorganisir, dan dapat diandalkan. Anda memiliki kemampuan untuk membangun fondasi yang kuat dan menyelesaikan pekerjaan dengan sistematis.",
+                    traits: [
+                        "Praktis dan realistis dalam pendekatan",
+                        "Disiplin dan tanggung jawab yang tinggi",
+                        "Kemampuan organisasi dan manajemen yang baik",
+                        "Ketekunan dan ketelitian dalam bekerja",
+                        "Dapat diandalkan dan konsisten"
+                    ]
+                },
+                5: {
+                    title: "Petualang dan Pembebas",
+                    description: "Anda adalah individu yang dinamis, penuh semangat petualangan, dan mencintai kebebasan. Anda mudah beradaptasi dengan perubahan dan menikmati variasi dalam hidup.",
+                    traits: [
+                        "Kebebasan dan kemandirian yang dihargai tinggi",
+                        "Kemampuan adaptasi yang luar biasa",
+                        "Rasa ingin tahu dan semangat petualangan",
+                        "Kemampuan komunikasi dan persuasi",
+                        "Energi dan antusiasme yang menular"
+                    ]
+                },
+                6: {
+                    title: "Pengasuh dan Penjaga",
+                    description: "Anda adalah pribadi yang bertanggung jawab, penuh kasih sayang, dan peduli terhadap kesejahteraan orang lain. Anda unggul dalam menciptakan harmoni dan keindahan.",
+                    traits: [
+                        "Rasa tanggung jawab terhadap keluarga dan komunitas",
+                        "Kemampuan merawat dan mengasuh orang lain",
+                        "Rasa keadilan dan keseimbangan yang kuat",
+                        "Bakat dalam menciptakan keindahan dan harmoni",
+                        "Kemampuan menyelesaikan konflik dengan bijaksana"
+                    ]
+                },
+                7: {
+                    title: "Pencari Kebenaran",
+                    description: "Anda adalah individu yang analitis, introspektif, dan selalu mencari makna yang lebih dalam. Anda memiliki kemampuan untuk memahami hal-hal yang kompleks dan tersembunyi.",
+                    traits: [
+                        "Kemampuan analitis dan penelitian yang tajam",
+                        "Intuisi dan kemampuan spiritual yang berkembang",
+                        "Kebutuhan akan waktu sendiri untuk refleksi",
+                        "Kecerdasan dan kebijaksanaan yang mendalam",
+                        "Kemampuan memahami konsep yang kompleks"
+                    ]
+                },
+                8: {
+                    title: "Eksekutif dan Pengatur",
+                    description: "Anda adalah pribadi yang ambisius, berorientasi pada hasil, dan memiliki bakat dalam mengelola sumber daya. Anda memahami nilai materi dan bagaimana menggunakannya secara efektif.",
+                    traits: [
+                        "Kemampuan manajemen dan organisasi yang kuat",
+                        "Ambisi dan drive untuk mencapai kesuksesan",
+                        "Pemahaman tentang kekuatan dan otoritas",
+                        "Kemampuan membuat keputusan yang tegas",
+                        "Bakat dalam bidang keuangan dan bisnis"
+                    ]
+                },
+                9: {
+                    title: "Humanis dan Filantropis",
+                    description: "Anda adalah individu yang penuh kasih, toleran, dan memiliki visi kemanusiaan yang luas. Anda peduli terhadap kesejahteraan semua orang dan ingin membuat dunia menjadi tempat yang lebih baik.",
+                    traits: [
+                        "Kasih sayang dan empati yang mendalam",
+                        "Toleransi dan penerimaan terhadap perbedaan",
+                        "Kreativitas dan bakat artistik",
+                        "Kemampuan untuk menginspirasi orang lain",
+                        "Visi kemanusiaan dan keinginan untuk melayani"
+                    ]
+                }
+            };
+            
+            // Fungsi untuk menghitung angka ekspresi dari nama
+            function calculateExpressionNumber(name) {
+                // Hilangkan spasi dan ubah ke huruf kapital
+                const cleanName = name.toUpperCase().replace(/\s/g, '');
+                let total = 0;
+                
+                // Jumlahkan nilai setiap huruf
+                for (let i = 0; i < cleanName.length; i++) {
+                    const letter = cleanName[i];
+                    if (letterValues.hasOwnProperty(letter)) {
+                        total += letterValues[letter];
+                    }
+                }
+                
+                // Reduksi hingga menjadi satu digit (kecuali 11, 22, 33 yang merupakan angka master)
+                while (total > 9 && total !== 11 && total !== 22 && total !== 33) {
+                    total = digitSum(total);
+                }
+                
+                return total;
+            }
+            
+            // Fungsi untuk menjumlahkan digit angka
+            function digitSum(num) {
+                return num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
+            
+            // Fungsi untuk menampilkan hasil
+            function displayResult(name, number) {
+                resultName.textContent = name;
+                resultNumber.textContent = number;
+                expressionNumber.textContent = number;
+                
+                const description = numberDescriptions[number];
+                if (description) {
+                    resultDescription.textContent = description.description;
+                    
+                    // Kosongkan daftar traits sebelumnya
+                    traitsList.innerHTML = '';
+                    
+                    // Tambahkan traits baru
+                    description.traits.forEach(trait => {
+                        const li = document.createElement('li');
+                        li.textContent = trait;
+                        traitsList.appendChild(li);
+                    });
+                }
+                
+                // Tampilkan bagian hasil
+                resultSection.classList.add('active');
+            }
+            
+            // Event listener untuk tombol hitung
+            calculateBtn.addEventListener('click', function() {
+                const name = fullnameInput.value.trim();
+                
+                if (name === '') {
+                    alert('Silakan masukkan nama lengkap Anda!');
+                    return;
+                }
+                
+                const expressionNumber = calculateExpressionNumber(name);
+                displayResult(name, expressionNumber);
+            });
+            
+            // Event listener untuk menekan Enter di input
+            fullnameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
