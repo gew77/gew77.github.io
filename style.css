@@ -197,3 +197,41 @@ footer {
         margin-bottom: 15px;
     }
 }
+/* --- Styling untuk Kalkulator Life Path --- */
+
+input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    margin: 15px 0;
+}
+
+input[type="date"]:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+.tiktok-link {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background: #000;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#lpImage {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+#result h2 {
+    color: #4a00e0;
+    margin: 10px 0;
+}
