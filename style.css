@@ -197,27 +197,66 @@ footer {
         margin-bottom: 15px;
     }
 }
-/* ============================================================
-   FIX LAYOUT LIFE PATH — BIAR SAMA PERSIS & RAPI SEPERTI KALK. EKSPRESI
-   ============================================================ */
+/* -------------------------------------------------
+   STYLING KHUSUS KALKULATOR LIFE PATH
+   AGAR IDENTIK DENGAN KALKULATOR NUMEROLOGI NAMA
+---------------------------------------------------*/
+
+/* Header Life Path */
+.container h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.container p {
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* Bungkus container Life Path mengikuti container ekspresi */
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
 
 /* Container utama LP */
-.lp-container {
-    padding: 30px;
+.container {
+    margin-top: 20px;
+    padding: 20px 30px 40px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* Style khusus bagian dalam container LP */
-.lp-inner {
-    padding: 30px;
+/* Bagian header Life Path agar sama persis */
+.container h1,
+.container p:first-of-type {
+    color: white;
 }
 
-/* Supaya semua konten di dalam life path lebih rapi */
+.container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.container > h1,
+.container > p {
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    padding: 30px 20px;
+    margin: 0;
+}
+
+.container > p {
+    padding-top: 0px;
+}
+
+/* Isi konten */
+.container div,
 .container input,
-.container button,
-.container #result {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.container button {
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 /* Input date di center + full style */
@@ -232,11 +271,12 @@ input[type="date"] {
     display: block;
 }
 
-/* Saat fokus */
+
 input[type="date"]:focus {
     border-color: #6a11cb;
     outline: none;
 }
+
 
 /* Tombol cari, beri jarak ideal */
 button {
@@ -245,14 +285,31 @@ button {
     display: block;
     width: max-content;
 }
-
-/* Hasil LP agar tidak mepet container */
-#result {
-    margin-top: 35px;
-    padding-top: 10px;
+/* Hasil */
+#result h2 {
+    color: #4a00e0;
+    margin-top: 20px;
+    text-align: center;
 }
 
-/* Gambar hasil */
 #lpImage {
-    margin-top: 20px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.tiktok-link {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #000;
+    color: white;
+    text-align: center;
+    width: max-content;
+}
+
+/* Tombol share & download */
+#result button {
+    margin: 10px 5px;
 }
