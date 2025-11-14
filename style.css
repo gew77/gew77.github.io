@@ -197,8 +197,69 @@ footer {
         margin-bottom: 15px;
     }
 }
-/* --- Styling untuk Kalkulator Life Path --- */
+/* -------------------------------------------------
+   STYLING KHUSUS KALKULATOR LIFE PATH
+   AGAR IDENTIK DENGAN KALKULATOR NUMEROLOGI NAMA
+---------------------------------------------------*/
 
+/* Header Life Path */
+.container h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.container p {
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* Bungkus container Life Path mengikuti container ekspresi */
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
+
+/* Container utama LP */
+.container {
+    margin-top: 20px;
+    padding: 20px 30px 40px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Bagian header Life Path agar sama persis */
+.container h1,
+.container p:first-of-type {
+    color: white;
+}
+
+.container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.container > h1,
+.container > p {
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    padding: 30px 20px;
+    margin: 0;
+}
+
+.container > p {
+    padding-top: 0px;
+}
+
+/* Isi konten */
+.container div,
+.container input,
+.container button {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* Input date agar match input text */
 input[type="date"] {
     width: 100%;
     padding: 12px 15px;
@@ -206,7 +267,7 @@ input[type="date"] {
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s;
-    margin: 15px 0;
+    margin-top: 20px;
 }
 
 input[type="date"]:focus {
@@ -214,24 +275,43 @@ input[type="date"]:focus {
     outline: none;
 }
 
-.tiktok-link {
-    display: inline-block;
-    margin: 15px 0;
-    padding: 10px 20px;
-    background: #000;
-    color: white;
-    text-decoration: none;
+/* Tombol identik */
+button {
+    margin-top: 15px;
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: white !important;
+    font-weight: 600;
+    padding: 12px 25px;
     border-radius: 8px;
-    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hasil */
+#result h2 {
+    color: #4a00e0;
+    margin-top: 20px;
+    text-align: center;
 }
 
 #lpImage {
-    max-width: 100%;
+    width: 100%;
     border-radius: 12px;
     margin-top: 10px;
 }
 
-#result h2 {
-    color: #4a00e0;
-    margin: 10px 0;
+.tiktok-link {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #000;
+    color: white;
+    text-align: center;
+    width: max-content;
+}
+
+/* Tombol share & download */
+#result button {
+    margin: 10px 5px;
 }
