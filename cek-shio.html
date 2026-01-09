@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <title>Kalkulator Shio | Hitung Shio Anda Berdasarkan Tanggal Lahir</title>
+    <meta name="description" content="Hitung shio (zodiak Tionghoa) Anda berdasarkan tanggal lahir secara instan. Temukan karakteristik, sifat, dan keberuntungan shio Anda. Gratis dan akurat!">
+    <meta name="keywords" content="kalkulator shio, hitung shio, zodiak tionghoa, tahun shio, tanggal lahir shio, karakter shio, ramalan shio, horoskop tionghoa">
+    <meta name="author" content="Zodiak Mood">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kalkulator Shio Gratis">
+    <meta property="og:description" content="Temukan karakteristik dan sifat shio Anda berdasarkan tanggal lahir. Hitung shio zodiak Tionghoa secara instan.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://websitekamu.com/kalkulator-shio">
+    <meta property="og:image" content="https://websitekamu.com/preview-shio.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kalkulator Shio Online">
+    <meta name="twitter:description" content="Hitung shio Anda secara gratis dan akurat berdasarkan tanggal lahir.">
+    <meta name="twitter:image" content="https://websitekamu.com/preview-shio.jpg">
+
+    <title>Kalkulator Shio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #d35400 0%, #f39c12 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #c0392b, #e74c3c);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="date"]:focus {
+            border-color: #c0392b;
+            outline: none;
+        }
+        
+        button {
+            background: linear-gradient(to right, #c0392b, #e74c3c);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .result-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .shio-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #c0392b, #e74c3c);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        .shio-name {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        
+        .result-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .traits-list {
+            list-style-type: none;
+        }
+        
+        .traits-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .traits-list li:before {
+            content: "🐉";
+            margin-right: 10px;
+        }
+        
+        .years-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .year-item {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .explanation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .explanation h3 {
+            margin-bottom: 15px;
+            color: #c0392b;
+        }
+        
+        .shio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .shio-item {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s;
+        }
+        
+        .shio-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .shio-emoji {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .shio-icon {
+                margin-bottom: 15px;
+            }
+            
+            .shio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kalkulator Shio</h1>
+            <p class="subtitle">Temukan shio (zodiak Tionghoa) Anda berdasarkan tanggal lahir</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="birthdate">Masukkan Tanggal Lahir Anda:</label>
+                    <input type="date" id="birthdate" max="2025-12-31">
+                </div>
+                <button id="calculate-btn">Hitung Shio Saya</button>
+            </div>
+            
+            <div class="result-section" id="result-section">
+                <div class="result-header">
+                    <div class="shio-icon">
+                        <div id="shio-emoji">🐀</div>
+                        <div class="shio-name" id="shio-name">Tikus</div>
+                    </div>
+                    <div>
+                        <h2 id="result-name">Shio Anda</h2>
+                        <p>Element: <span id="shio-element">Air</span></p>
+                        <p>Tahun Lahir: <span id="birth-year">1996</span></p>
+                    </div>
+                </div>
+                
+                <h3 class="result-title">Karakteristik Shio <span id="shio-title">Tikus</span></h3>
+                <p class="result-description" id="result-description">
+                    Deskripsi karakteristik shio akan muncul di sini setelah perhitungan.
+                </p>
+                
+                <h3>Sifat Utama Anda:</h3>
+                <ul class="traits-list" id="traits-list">
+                    <!-- Daftar sifat akan diisi oleh JavaScript -->
+                </ul>
+                
+                <div>
+                    <h3>Tahun Shio <span id="shio-years-title">Tikus</span>:</h3>
+                    <div class="years-list" id="years-list">
+                        <!-- Daftar tahun akan diisi oleh JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <h3>Daftar 12 Shio</h3>
+                    <div class="shio-grid" id="shio-grid">
+                        <!-- Grid shio akan diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Kalkulator Shio &copy; 2023 - Hasil ini bersifat hiburan dan tidak dimaksudkan sebagai nasihat profesional.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculate-btn');
+            const birthdateInput = document.getElementById('birthdate');
+            const resultSection = document.getElementById('result-section');
+            const shioEmoji = document.getElementById('shio-emoji');
+            const shioName = document.getElementById('shio-name');
+            const resultName = document.getElementById('result-name');
+            const shioElement = document.getElementById('shio-element');
+            const birthYear = document.getElementById('birth-year');
+            const shioTitle = document.getElementById('shio-title');
+            const resultDescription = document.getElementById('result-description');
+            const traitsList = document.getElementById('traits-list');
+            const yearsList = document.getElementById('years-list');
+            const shioYearsTitle = document.getElementById('shio-years-title');
+            const shioGrid = document.getElementById('shio-grid');
+            
+            // Set tanggal default ke 20 tahun yang lalu
+            const defaultDate = new Date();
+            defaultDate.setFullYear(defaultDate.getFullYear() - 20);
+            birthdateInput.valueAsDate = defaultDate;
+            
+            // Data shio
+            const shioData = {
+                'Tikus': {
+                    emoji: '🐀',
+                    element: 'Air',
+                    years: [1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020],
+                    description: 'Orang yang lahir di tahun Tikus dikenal cerdas, adaptif, dan memiliki insting bisnis yang tajam. Mereka adalah pribadi yang ramah dan mudah bergaul, namun juga sangat ambisius dalam mencapai tujuan.',
+                    traits: [
+                        "Cerdas dan cepat belajar",
+                        "Ramah dan mudah bergaul",
+                        "Ambisi dan determinasi tinggi",
+                        "Hemat dan pandai mengelola keuangan",
+                        "Intuisi yang kuat"
+                    ]
+                },
+                'Kerbau': {
+                    emoji: '🐂',
+                    element: 'Tanah',
+                    years: [1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021],
+                    description: 'Shio Kerbau mewakili ketekunan, kejujuran, dan ketabahan. Mereka adalah pekerja keras yang dapat diandalkan dan memiliki pendirian yang kuat. Kerbau mengutamakan stabilitas dan keamanan dalam hidup.',
+                    traits: [
+                        "Rajin dan pekerja keras",
+                        "Dapat diandalkan dan bertanggung jawab",
+                        "Sabar dan tabah menghadapi tantangan",
+                        "Tradisional dan menghargai nilai keluarga",
+                        "Konsisten dalam tindakan"
+                    ]
+                },
+                'Harimau': {
+                    emoji: '🐅',
+                    element: 'Kayu',
+                    years: [1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022],
+                    description: 'Harimau adalah simbol keberanian, kekuatan, dan kepemimpinan. Mereka pemberani, kompetitif, dan penuh semangat. Namun, terkadang mereka bisa terlalu impulsif dan ingin selalu menjadi pusat perhatian.',
+                    traits: [
+                        "Berani dan penuh semangat",
+                        "Pemimpin alami",
+                        "Kompetitif dan suka tantangan",
+                        "Karismatik dan menarik perhatian",
+                        "Pelindung bagi orang terdekat"
+                    ]
+                },
+                'Kelinci': {
+                    emoji: '🐇',
+                    element: 'Kayu',
+                    years: [1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023],
+                    description: 'Orang dengan shio Kelinci dikenal elegan, penyayang, dan diplomatis. Mereka menghindari konflik dan selalu mencari harmoni. Kelinci memiliki selera yang baik dan cenderung beruntung dalam hidup.',
+                    traits: [
+                        "Elegan dan berbudaya",
+                        "Diplomatis dan pandai bernegosiasi",
+                        "Penyayang dan peduli pada orang lain",
+                        "Intuitif dan spiritual",
+                        "Beruntung dan diberkati"
+                    ]
+                },
+                'Naga': {
+                    emoji: '🐉',
+                    element: 'Tanah',
+                    years: [1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024],
+                    description: 'Naga adalah shio paling kuat dan beruntung. Mereka penuh energi, ambisius, dan karismatik. Naga memiliki keberanian untuk mengambil risiko dan sering kali menjadi pionir di bidang mereka.',
+                    traits: [
+                        "Berenergi dan penuh semangat",
+                        "Karismatik dan inspiratif",
+                        "Ambisi dan keberanian tinggi",
+                        "Beruntung dan sukses",
+                        "Pemimpin yang visioner"
+                    ]
+                },
+                'Ular': {
+                    emoji: '🐍',
+                    element: 'Api',
+                    years: [1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, 2025],
+                    description: 'Ular dikenal bijaksana, misterius, dan intuitif. Mereka memiliki kemampuan analisis yang tajam dan sering kali sukses dalam bidang intelektual atau spiritual. Ular pandai menjaga rahasia dan memiliki daya tarik yang magnetis.',
+                    traits: [
+                        "Bijaksana dan filosofis",
+                        "Intuitif dan spiritual",
+                        "Elegant dan berwibawa",
+                        "Pandai menganalisis situasi",
+                        "Daya tarik yang magnetis"
+                    ]
+                },
+                'Kuda': {
+                    emoji: '🐎',
+                    element: 'Api',
+                    years: [1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026],
+                    description: 'Kuda adalah simbol kebebasan, petualangan, dan semangat. Mereka energik, mandiri, dan mencintai tantangan. Kuda pandai bergaul tetapi terkadang bisa tidak sabar dan impulsif.',
+                    traits: [
+                        "Bebas dan mandiri",
+                        "Energik dan atletis",
+                        "Pandai bergaul dan populer",
+                        "Suka petualangan dan tantangan",
+                        "Optimis dan penuh semangat hidup"
+                    ]
+                },
+                'Kambing': {
+                    emoji: '🐑',
+                    element: 'Tanah',
+                    years: [1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027],
+                    description: 'Kambing dikenal kreatif, penyayang, dan artistik. Mereka menghargai keindahan, harmoni, dan kenyamanan. Kambing sensitif terhadap perasaan orang lain dan sering kali berbakat dalam seni.',
+                    traits: [
+                        "Kreatif dan artistik",
+                        "Penyayang dan empatik",
+                        "Menghargai keindahan dan seni",
+                        "Pencari kedamaian dan harmoni",
+                        "Baik hati dan murah hati"
+                    ]
+                },
+                'Monyet': {
+                    emoji: '🐒',
+                    element: 'Logam',
+                    years: [1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028],
+                    description: 'Monyet cerdas, penuh akal, dan inovatif. Mereka pandai memecahkan masalah dan memiliki selera humor yang baik. Monyet suka bermain dan terkadang bisa licik untuk mencapai tujuannya.',
+                    traits: [
+                        "Cerdas dan penuh akal",
+                        "Inovatif dan penuh ide",
+                        "Pandai berkomunikasi",
+                        "Selera humor yang baik",
+                        "Pandai memecahkan masalah"
+                    ]
+                },
+                'Ayam': {
+                    emoji: '🐓',
+                    element: 'Logam',
+                    years: [1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029],
+                    description: 'Ayam dikenal jujur, teliti, dan percaya diri. Mereka perfeksionis, pekerja keras, dan selalu tampil rapi. Ayam pandai mengorganisir dan sering kali berbakat dalam public speaking.',
+                    traits: [
+                        "Jujur dan terbuka",
+                        "Teliti dan perfeksionis",
+                        "Percaya diri dan mandiri",
+                        "Pandai berorganisasi",
+                        "Berbakat dalam public speaking"
+                    ]
+                },
+                'Anjing': {
+                    emoji: '🐕',
+                    element: 'Tanah',
+                    years: [1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030],
+                    description: 'Anjing adalah simbol kesetiaan, kejujuran, dan rasa keadilan. Mereka dapat dipercaya, bertanggung jawab, dan selalu melindungi orang yang dicintai. Anjing memiliki intuisi yang kuat tentang niat orang lain.',
+                    traits: [
+                        "Setia dan dapat dipercaya",
+                        "Jujur dan adil",
+                        "Bertanggung jawab dan melindungi",
+                        "Intuitif tentang karakter orang",
+                        "Peduli pada kesejahteraan sosial"
+                    ]
+                },
+                'Babi': {
+                    emoji: '🐖',
+                    element: 'Air',
+                    years: [1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031],
+                    description: 'Babi dikenal murah hati, jujur, dan mencintai kenyamanan. Mereka adalah teman yang baik, suka menikmati hidup, dan jarang memendam dendam. Babi sering kali beruntung dalam hal materi.',
+                    traits: [
+                        "Murah hati dan dermawan",
+                        "Jujur dan tulus",
+                        "Mencintai kenyamanan hidup",
+                        "Suka bersosialisasi",
+                        "Beruntung dalam hal materi"
+                    ]
+                }
+            };
+            
+            // Urutan shio
+            const shioOrder = ['Tikus', 'Kerbau', 'Harimau', 'Kelinci', 'Naga', 'Ular', 'Kuda', 'Kambing', 'Monyet', 'Ayam', 'Anjing', 'Babi'];
+            
+            // Fungsi untuk menghitung shio berdasarkan tahun lahir
+            function calculateShio(birthYear) {
+                // Tahun Tikus dimulai dari 1924 (setiap 12 tahun)
+                const startYear = 1924;
+                const shioIndex = (birthYear - startYear) % 12;
+                
+                // Jika hasil negatif (untuk tahun sebelum 1924)
+                const adjustedIndex = shioIndex >= 0 ? shioIndex : shioIndex + 12;
+                
+                return shioOrder[adjustedIndex];
+            }
+            
+            // Fungsi untuk menampilkan hasil
+            function displayResult(date) {
+                const birthDate = new Date(date);
+                const year = birthDate.getFullYear();
+                const shio = calculateShio(year);
+                const data = shioData[shio];
+                
+                // Update tampilan
+                shioEmoji.textContent = data.emoji;
+                shioName.textContent = shio;
+                resultName.textContent = `Shio ${shio}`;
+                shioElement.textContent = data.element;
+                birthYear.textContent = year;
+                shioTitle.textContent = shio;
+                shioYearsTitle.textContent = shio;
+                
+                // Update deskripsi
+                resultDescription.textContent = data.description;
+                
+                // Update daftar sifat
+                traitsList.innerHTML = '';
+                data.traits.forEach(trait => {
+                    const li = document.createElement('li');
+                    li.textContent = trait;
+                    traitsList.appendChild(li);
+                });
+                
+                // Update daftar tahun shio
+                yearsList.innerHTML = '';
+                data.years.forEach(year => {
+                    const span = document.createElement('span');
+                    span.className = 'year-item';
+                    span.textContent = year;
+                    yearsList.appendChild(span);
+                });
+                
+                // Tampilkan bagian hasil
+                resultSection.classList.add('active');
+                
+                // Scroll ke hasil
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            // Fungsi untuk membuat grid shio
+            function createShioGrid() {
+                shioGrid.innerHTML = '';
+                
+                shioOrder.forEach(shio => {
+                    const data = shioData[shio];
+                    const div = document.createElement('div');
+                    div.className = 'shio-item';
+                    
+                    div.innerHTML = `
+                        <div class="shio-emoji">${data.emoji}</div>
+                        <div>${shio}</div>
+                    `;
+                    
+                    // Tambahkan event listener untuk klik
+                    div.addEventListener('click', () => {
+                        // Set tanggal ke tahun pertama shio tersebut
+                        const defaultYear = data.years[data.years.length - 2] || data.years[0];
+                        const defaultDate = new Date(defaultYear, 5, 15); // 15 Juni tahun tersebut
+                        birthdateInput.valueAsDate = defaultDate;
+                        
+                        // Tampilkan hasil untuk shio ini
+                        displayResult(defaultDate);
+                    });
+                    
+                    shioGrid.appendChild(div);
+                });
+            }
+            
+            // Event listener untuk tombol hitung
+            calculateBtn.addEventListener('click', function() {
+                const date = birthdateInput.value;
+                
+                if (date === '') {
+                    alert('Silakan pilih tanggal lahir Anda!');
+                    return;
+                }
+                
+                displayResult(date);
+            });
+            
+            // Event listener untuk perubahan tanggal
+            birthdateInput.addEventListener('change', function() {
+                if (birthdateInput.value) {
+                    displayResult(birthdateInput.value);
+                }
+            });
+            
+            // Inisialisasi: tampilkan hasil untuk tanggal default
+            displayResult(defaultDate);
+            
+            // Buat grid shio
+            createShioGrid();
+        });
+    </script>
+</body>
+</html>
