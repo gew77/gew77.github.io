@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Kalkulator Expression Number | Numerologi Online</title>
+    <meta name="description" content="Hitung Expression Number kamu berdasarkan nama lengkap dengan kalkulator numerologi online gratis. Cari tahu bakat, potensi, dan karakter unikmu.">
+    <meta name="keywords" content="expression number, kalkulator expression number, numerologi online, hitung expression number, destiny number">
+    <meta name="author" content="Nama atau Brand kamu">
+
+    <!-- OG -->
+    <meta property="og:title" content="Kalkulator Expression Number Gratis">
+    <meta property="og:description" content="Hitung Expression Number kamu berdasarkan nama lengkap dan temukan potensi unikmu.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://username.github.io/namarepo/">
+    <meta property="og:image" content="https://username.github.io/namarepo/preview.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ads -->
+    <script src="https://fpyf8.com/88/tag.min.js" data-zone="163468" async data-cfasync="false"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Kalkulator Expression Number</h1>
+
+        <p>
+            Masukkan nama lengkap kamu untuk melihat Expression Number
+            dan video TikTok sesuai angka kamu.
+        </p>
+
+        <div class="lp-inner">
+
+            <input
+                type="text"
+                id="fullname"
+                placeholder="Masukkan nama lengkap"
+                autocomplete="name"
+            >
+
+            <button onclick="calculateExpression()">
+                Lihat Hasil
+            </button>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADS -->
+
+    <script
+        async
+        data-cfasync="false"
+        src="//pl27334525.profitableratecpm.com/44c04e93e9470cc4397c30ea799b95c7/invoke.js">
+    </script>
+
+    <div id="container-44c04e93e9470cc4397c30ea799b95c7"></div>
+
+
+    <script>
+
+        /*
+        ==========================================
+        EXPRESSION NUMBER CALCULATOR
+        Pythagorean Numerology
+        ==========================================
+        */
+
+        const videos = {
+
+            1: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_1",
+            2: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_2",
+            3: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_3",
+            4: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_4",
+            5: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_5",
+            6: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_6",
+            7: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_7",
+            8: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_8",
+            9: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_9",
+            11: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_11",
+            22: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_22",
+            33: "https://www.tiktok.com/@jeda.dulu3/photo/EXPRESSION_VIDEO_33"
+
+        };
+
+
+        /*
+        ==========================================
+        PYTHAGOREAN LETTER VALUES
+        ==========================================
+        */
+
+        const letterValues = {
+
+            A: 1, B: 2, C: 3,
+            D: 4, E: 5, F: 6,
+            G: 7, H: 8, I: 9,
+
+            J: 1, K: 2, L: 3,
+            M: 4, N: 5, O: 6,
+            P: 7, Q: 8, R: 9,
+
+            S: 1, T: 2, U: 3,
+            V: 4, W: 5, X: 6,
+            Y: 7, Z: 8
+
+        };
+
+
+        /*
+        ==========================================
+        CALCULATE EXPRESSION NUMBER
+        ==========================================
+        */
+
+        function calculateExpression() {
+
+            const fullname =
+                document.getElementById("fullname").value.trim();
+
+            if (!fullname) {
+
+                alert("Masukkan nama lengkap dulu!");
+
+                return;
+            }
+
+
+            /*
+            Hanya mengambil huruf A-Z
+            */
+
+            const letters =
+                fullname
+                    .toUpperCase()
+                    .replace(/[^A-Z]/g, "");
+
+
+            if (!letters) {
+
+                alert("Nama tidak valid!");
+
+                return;
+            }
+
+
+            /*
+            Hitung total nilai seluruh huruf
+            */
+
+            let total = 0;
+
+            for (let letter of letters) {
+
+                total += letterValues[letter];
+
+            }
+
+
+            /*
+            Reduksi angka
+            Tetap mempertahankan Master Number
+            11, 22, 33
+            */
+
+            let expression = total;
+
+            while (
+                ![11, 22, 33].includes(expression) &&
+                expression > 9
+            ) {
+
+                expression =
+                    expression
+                        .toString()
+                        .split("")
+                        .reduce(
+                            (a, b) =>
+                                a + parseInt(b),
+                            0
+                        );
+
+            }
+
+
+            const resultDiv =
+                document.getElementById("result");
+
+
+            /*
+            ==========================================
+            HASIL
+            ==========================================
+            */
+
+            if (videos[expression]) {
+
+                resultDiv.innerHTML = `
+
+                    <h2>
+                        Expression Number kamu: ${expression}
+                    </h2>
+
+                    <p>
+                        Nama:
+                        <strong>${escapeHTML(fullname)}</strong>
+                    </p>
+
+                    <a
+                        href="${videos[expression]}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <img
+                            src="https://gew77.github.io/exp${expression}.jpg"
+                            alt="Expression Number ${expression}"
+                            id="lpImage"
+                        >
+
+                    </a>
+
+                    <br><br>
+
+                    <a
+                        href="${videos[expression]}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="tiktok-link"
+                    >
+                        🎯 Lihat TikTok Kamu
+                    </a>
+
+                    <br><br>
+
+                    <button onclick="shareImage(${expression})">
+                        🔗 Share Gambar
+                    </button>
+
+                    <button onclick="downloadImage(${expression})">
+                        💾 Simpan Gambar
+                    </button>
+
+                `;
+
+            } else {
+
+                resultDiv.innerHTML = `
+
+                    <p>
+                        Expression Number ${expression}
+                        belum tersedia.
+                    </p>
+
+                `;
+
+            }
+
+
+            /*
+            Ads tambahan
+            */
+
+            setTimeout(() => {
+
+                (function(d,z,s){
+
+                    s.src =
+                        'https://' +
+                        d +
+                        '/401/' +
+                        z;
+
+                    try {
+
+                        (document.body ||
+                        document.documentElement)
+                        .appendChild(s);
+
+                    } catch(e) {}
+
+                })(
+                    'groleegni.net',
+                    9692918,
+                    document.createElement('script')
+                );
+
+            }, 1500);
+
+        }
+
+
+        /*
+        ==========================================
+        ESCAPE HTML
+        ==========================================
+        */
+
+        function escapeHTML(str) {
+
+            return str.replace(/[&<>"']/g, function(match) {
+
+                const map = {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                };
+
+                return map[match];
+
+            });
+
+        }
+
+
+        /*
+        ==========================================
+        SHARE IMAGE
+        ==========================================
+        */
+
+        function shareImage(expression) {
+
+            const imageUrl =
+                `https://gew77.github.io/exp${expression}.jpg`;
+
+            const text =
+                `Expression Number aku: ${expression}! Cek punya kamu juga.`;
+
+            if (
+                navigator.canShare &&
+                navigator.share
+            ) {
+
+                fetch(imageUrl)
+
+                    .then(response =>
+                        response.blob()
+                    )
+
+                    .then(blob => {
+
+                        const file =
+                            new File(
+                                [blob],
+                                `ExpressionNumber-${expression}.jpg`,
+                                {
+                                    type: "image/jpeg"
+                                }
+                            );
+
+                        navigator.share({
+
+                            files: [file],
+
+                            title:
+                                "Expression Number",
+
+                            text: text
+
+                        });
+
+                    })
+
+                    .catch(() => {
+
+                        fallbackShare(text);
+
+                    });
+
+            } else {
+
+                fallbackShare(text);
+
+            }
+
+        }
+
+
+        /*
+        ==========================================
+        FALLBACK SHARE
+        ==========================================
+        */
+
+        function fallbackShare(text) {
+
+            const url =
+                `https://wa.me/?text=${
+                    encodeURIComponent(
+                        text + " " + location.href
+                    )
+                }`;
+
+            window.open(
+                url,
+                "_blank"
+            );
+
+        }
+
+
+        /*
+        ==========================================
+        DOWNLOAD IMAGE
+        ==========================================
+        */
+
+        function downloadImage(expression) {
+
+            const a =
+                document.createElement("a");
+
+            a.href =
+                `https://gew77.github.io/exp${expression}.jpg`;
+
+            a.download =
+                `ExpressionNumber-${expression}.jpg`;
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            document.body.removeChild(a);
+
+        }
+
+    </script>
+
+</body>
+</html>
